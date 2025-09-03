@@ -1,27 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WanderLust</title>
-  </head>
+<%- layout('layouts/boilerplate') -%>
 
-  <body>
-    <main>
-      <section>
-        <h1>Listing Details :</h1>
-        <ul>
-          <li><%= listing.title %></li>
-          <li><%= listing.description %></li>
-          <li>&#8377;<%= listing.price.toLocaleString('en-IN') %></li>
-          <li><%= listing.location %></li>
-          <li><%= listing.country %></li>
-        </ul>
-        <a href="/listings/<%= listing._id %>/edit">Edit this listing</a>
+<body>
+  <section class="section-show">
+    <div class="container">
+      <h1 class="section-heading"><%= listing.title %></h1>
+
+      <div class="show-card">
+        <div class="show-card-img-box">
+          <img src="<%= listing.image %>" class="show-card-img" alt="listing image" />
+          <img src="<%= listing.image %>" class="show-card-img" alt="listing image" />
+          <img src="<%= listing.image %>" class="show-card-img" alt="listing image" />
+          <img src="<%= listing.image %>" class="show-card-img" alt="listing image" />
+          <img src="<%= listing.image %>" class="show-card-img" alt="listing image" />
+        </div>
+
+        <div class="card-body">
+          <p class="show-card-description"><%= listing.description %></p>
+          <p class="show-card-price">&#8377;<%= listing.price.toLocaleString('en-IN') %>/ night</p>
+          <p class="show-card-location"><%= listing.location %>, <span><%= listing.country %></span></p>
+        </div>
+      </div>
+
+      <div class="form-group-flex">
+        <a href="/listings/<%= listing._id %>/edit"><button class="btn btn-edit">Edit</button></a>
         <form method="post" action="/listings/<%= listing._id %>?_method=DELETE">
-          <button>Delete this listing</button>
+          <button class="btn btn-delete">Delete</button>
         </form>
-      </section>
-    </main>
-  </body>
-</html>
+      </div>
+    </div>
+  </section>
+</body>

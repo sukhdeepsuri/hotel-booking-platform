@@ -1,21 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WanderLust</title>
-  </head>
+<% layout('layouts/boilerplate') -%>
 
-  <body>
-    <main>
-      <section>
-        <a href="/listings/new"><button>Create New Listing</button></a>
+<body>
+  <section class="section-index">
+    <div class="container">
+      <div class="cards-grid">
         <% for(const listing of allListings) { %>
-        <div>
-          <h1><a href="/listings/<%= listing._id %>"><%= listing.title %></a></h1>
+        <div class="card">
+          <div class="card-img-box">
+            <a href="/listings/<%= listing._id %>"><img src="<%= listing.image %>" class="card-img" alt="listing image" /></a>
+          </div>
+
+          <div class="card-body">
+            <p class="card-title"><%= listing.title %></p>
+            <p class="card-price">&#8377; <%= listing.price.toLocaleString('en-IN') %>/ night <em class="tax-info hide">+18% GST</em></p>
+          </div>
         </div>
         <% } %>
-      </section>
-    </main>
-  </body>
-</html>
+      </div>
+    </div>
+  </section>
+</body>

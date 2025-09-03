@@ -1,31 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WanderLust</title>
-  </head>
+<%- layout('layouts/boilerplate') -%>
 
-  <body>
-    <main>
-      <section>
-        <h1>Create New Listing :</h1>
-        <form method="post" action="/listings">
-          <input name="listing[title]" placeholder="Enter title" type="text" />
-          <br />
-          <textarea name="listing[description]" placeholder="Enter description" type="text"></textarea>
-          <br />
-          <input name="listing[image]" placeholder="Enter image URL/Link" type="text" />
-          <br />
-          <input name="listing[price]" placeholder="Enter price" type="number" />
-          <br />
-          <input name="listing[location]" placeholder="Enter location" type="text" />
-          <br />
-          <input name="listing[country]" placeholder="Enter country" type="text" />
-          <br />
-          <button>Add Listing</button>
-        </form>
-      </section>
-    </main>
-  </body>
-</html>
+<body>
+  <section class="section-new">
+    <div class="container">
+      <h1 class="section-heading">Create New Listing :</h1>
+      <form method="post" action="/listings">
+        <div class="form-group">
+          <label for="title">Title : </label>
+          <input type="text" name="listing[title]" id="title" placeholder="Enter title" required />
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description : </label>
+          <textarea type="text" name="listing[description]" id="description" placeholder="Enter description" class="message-textarea" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="image">Upload image link : </label>
+          <input type="text" name="listing[image]" id="image" placeholder="Enter image URL/Link" required />
+        </div>
+
+        <div class="form-group-flex">
+          <div class="form-group">
+            <label for="price">Price : </label>
+            <input type="number" name="listing[price]" id="price" placeholder="Enter price" required />
+          </div>
+
+          <div class="form-group form-lg-3">
+            <label for="location">Location : </label>
+            <input type="text" name="listing[location]" id="location" placeholder="Enter location" required />
+          </div>
+        </div>
+
+        <div class="form-group mb--lg">
+          <label for="country">Country : </label>
+          <input type="text" name="listing[country]" id="country" placeholder="Enter country" required />
+        </div>
+
+        <button class="btn btn-edit">Add Listing</button>
+      </form>
+    </div>
+  </section>
+</body>
