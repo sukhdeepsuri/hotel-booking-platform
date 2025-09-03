@@ -1,0 +1,189 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* font-size: 10px  */
+  /* 10px / 16px = 0.625 = 62.5% */
+  /* Percentage of user's browser font size setting. */
+  font-size: 62.5%;
+}
+
+body {
+  color: #444;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1;
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
+}
+
+/* ------------------------ */
+/* GENERAL REUSABLE STYLES */
+/* ------------------------ */
+
+.container {
+  padding: 0 4.8rem;
+}
+
+.btn,
+.btn:link,
+.btn:visited {
+  border-radius: 0.7rem;
+  display: inline-block;
+  padding: 1.2rem 2.4rem;
+  text-decoration: none;
+  border: none;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-edit {
+  color: #333;
+  background-color: #f1f3f5;
+  border: 1px solid #ced4da;
+}
+
+.btn-edit:hover {
+  background-color: #dee2e6;
+}
+
+.btn-delete {
+  background: none;
+  border: 1px solid #ff385c;
+  color: #d42f4d;
+}
+
+.btn-delete:hover {
+  background: none;
+  background-color: #ff385c;
+  color: #fff;
+}
+
+.grid {
+  display: grid;
+  column-gap: 6.4rem;
+  row-gap: 9.6rem;
+}
+
+.grid--2-cols {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid--3-cols {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid--4-cols {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid--5-cols {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.heading-primary,
+.heading-secondary,
+.heading-tertiary {
+  color: #333;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.heading-primary {
+  font-size: 5.2rem;
+  line-height: 1.05;
+  margin-bottom: 3.2rem;
+}
+
+.heading-secondary {
+  font-size: 4.4rem;
+  line-height: 1.2;
+  margin-bottom: 9.6rem;
+}
+
+.heading-tertiary {
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 3.2rem;
+}
+
+.section-heading {
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin-bottom: 2.4rem;
+}
+
+.section-ruler {
+  margin-top: 3.6rem;
+  border: 1px solid #dee2e6;
+}
+
+/* ------------------------ */
+/* INPUT STYLES */
+/* ------------------------ */
+input[type='text'],
+input[type='email'],
+input[type='number'],
+input[type='password'],
+textarea,
+select {
+  width: 100%;
+  padding: 0.7rem;
+  outline: none;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  font-family: inherit;
+  transition: border-color 0.15s ease-out;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #adb5bd;
+}
+
+.form-group {
+  margin-bottom: 1.6rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 0.8rem;
+}
+
+.message-textarea {
+  height: 20rem;
+}
+
+/* ------------------------ */
+/* HELPER / SETTINGS CLASSES */
+/* ------------------------ */
+
+.form-group-flex {
+  display: flex;
+  gap: 1.6rem;
+}
+
+.mb--lg {
+  margin-bottom: 2.4rem !important;
+}
+
+.form-lg-3 {
+  flex-grow: 1;
+}

@@ -1,0 +1,259 @@
+/* ------------------------ */
+/* COMPONENT STYLES */
+/* ------------------------ */
+
+/*///////////////////////*/
+/* HEADER SECTION */
+.header {
+  background-color: #f1f3f5;
+  border-bottom: 1px solid #dee2e6;
+  display: flex;
+  gap: 1.6rem;
+  align-items: center;
+  height: 9.6rem;
+  padding: 0 4.8rem;
+}
+
+.logo {
+  font-size: 3rem;
+  color: #ff385c;
+  transform: rotate(-45deg);
+  transition: transform 0.3s ease-out;
+}
+
+.logo:hover {
+  transform: rotate(0deg);
+}
+
+/*///////////////////////*/
+/* NAVIGATION */
+.main-nav {
+  flex-grow: 1;
+}
+
+.main-nav-list {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.main-nav-link:link,
+.main-nav-link:visited {
+  display: inline-block;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 1.6rem;
+  transition: color 0.3s;
+}
+
+.main-nav-link:hover,
+.main-nav-link:active {
+  color: #d42f4d;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  margin: 0 auto;
+  border: 1px solid #ced4da;
+  background-color: #fff;
+  padding: 0.8rem 1.2rem;
+  padding-left: 1.6rem;
+  border-radius: 25px;
+}
+
+.search-icon {
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: #ff385c;
+  padding: 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.search-icon:hover {
+  background-color: #d42f4d;
+}
+
+.search-input[type='text'] {
+  background-color: inherit;
+  border: none;
+  padding: 0;
+}
+
+/*///////////////////////*/
+/* INDEX SECTION */
+.section-index {
+  padding: 4.8rem 0;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: 1.6rem;
+  row-gap: 4.8rem;
+}
+
+.card-img-box {
+  cursor: pointer;
+  border-radius: 1rem;
+  height: 30rem;
+  margin-bottom: 1.6rem;
+  overflow: hidden;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease-out;
+}
+
+.card-img:hover {
+  transform: scale(1.05);
+}
+
+.card-title {
+  font-size: 1.6rem;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.card-price {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/*///////////////////////*/
+/* SHOW SECTION */
+.section-show {
+  padding: 4.8rem 0;
+}
+
+.section-show .container {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 3.2rem;
+}
+
+.show-card {
+  margin-bottom: 2.4rem;
+}
+
+.show-card-img-box {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 30rem 30rem;
+  gap: 1.2rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+  margin-bottom: 2.4rem;
+}
+
+.show-card-img:nth-child(1) {
+  grid-row: 1/3;
+}
+
+.show-card-img {
+  box-shadow: 5px 15px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease-out;
+}
+
+.show-card-description {
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+.show-card-price {
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin: 0.4rem 0 1.2rem 0;
+}
+
+.show-card-location {
+  font-size: 1.4rem;
+}
+
+.show-card-location span {
+  font-weight: 500;
+}
+
+/*///////////////////////*/
+/* NEW SECTION */
+.section-new {
+  padding: 4.8rem 0;
+}
+
+.section-new .container {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 3.2rem;
+}
+
+/*///////////////////////*/
+/* EDIT SECTION */
+.section-edit {
+  padding: 4.8rem 0;
+}
+
+.section-edit .container {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 3.2rem;
+}
+
+/*///////////////////////*/
+/* FOOTER SECTION */
+footer {
+  background-color: #f1f3f5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.8rem;
+  padding: 3.2rem 0;
+}
+
+.social-links {
+  list-style: none;
+  display: flex;
+  gap: 1.2rem;
+  cursor: pointer;
+}
+
+.social-icon {
+  font-size: 2.4rem;
+}
+
+.copyright-text {
+  font-size: 1.6rem;
+}
+
+.info-links {
+  list-style: none;
+  display: flex;
+  gap: 1.2rem;
+}
+
+.info-links a:link,
+.info-links a:visited {
+  font-size: 1.4rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: #333;
+}
+
+.info-links a:hover {
+  text-decoration: underline;
+}
