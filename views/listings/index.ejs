@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WanderLust</title>
+  </head>
+
+  <body>
+    <main>
+      <section>
+        <a href="/listings/new"><button>Create New Listing</button></a>
+        <% for(const listing of allListings) { %>
+        <div>
+          <h1><a href="/listings/<%= listing._id %>"><%= listing.title %></a></h1>
+        </div>
+        <% } %>
+      </section>
+    </main>
+  </body>
+</html>
