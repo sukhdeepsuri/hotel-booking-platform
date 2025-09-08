@@ -7,6 +7,7 @@ const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const wrapAsync = require('./utils/wrapAsync');
 const ExpressError = require('./utils/ExpressError');
+const listingSchema = require('./schema.js');
 
 const Listing = require('./models/listing');
 
@@ -26,6 +27,14 @@ async function main() {
 main()
   .then(res => console.log('connected to DB'))
   .catch(err => console.log(err));
+
+const validateListing = function (req, res, next) {
+  const result = listingSchema.validate(req.body);
+  if (result.error) {
+    throw new ExpressError(400, result.error);
+  }
+  next();
+};
 
 // Index Route
 app.get('/listings', async (req, res) => {
@@ -63,6 +72,7 @@ app.get(
 // Create Route - POST request
 app.post(
   '/listings',
+  validateListing,
   wrapAsync(async (req, res) => {
     const listing = new Listing(req.body.listing);
     await listing.save();
@@ -73,6 +83,7 @@ app.post(
 // Edit Route - PUT request
 app.put(
   '/listings/:id',
+  validateListing,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     const listing = req.body.listing;
@@ -94,6 +105,7 @@ app.delete(
   })
 );
 
+// Fallback Middleware
 app.use((req, res, next) => {
   next(new ExpressError(404, 'Page not found'));
 });
