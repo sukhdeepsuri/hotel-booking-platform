@@ -187,3 +187,47 @@ textarea:focus {
 .form-lg-3 {
   flex-grow: 1;
 }
+
+/* ------------------------ */
+/* ALERT ERROR & SUCCESS CLASSES */
+/* ------------------------ */
+
+.section-alert .container {
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 0 3.2rem;
+}
+
+.alert {
+  padding: 1.6rem 2.4rem;
+  margin-top: 3.2rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.alert p {
+  font-size: 1.6rem;
+  line-height: 1.4;
+}
+
+.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+}
+
+.success {
+  color: #0a3622;
+  background-color: #d1e7dd;
+  border: 1px solid #a3cfbb;
+}
+
+.dismiss-btn {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #444;
+}

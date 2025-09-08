@@ -113,7 +113,7 @@ app.use((req, res, next) => {
 // Error Handling Middleware
 app.use((err, req, res, next) => {
   const { status = 500, message } = err;
-  res.status(status).send(message);
+  res.status(status).render('error.ejs', { message });
 });
 
 app.get('/', (req, res) => {
