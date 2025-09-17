@@ -7,7 +7,8 @@ const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const wrapAsync = require('./utils/wrapAsync');
 const ExpressError = require('./utils/ExpressError');
-const listingSchema = require('./schema.js');
+const { listingSchema } = require('./schema.js');
+const { reviewSchema } = require('./schema.js');
 
 const Listing = require('./models/listing');
 const Review = require('./models/review');
@@ -33,8 +34,18 @@ const validateListing = function (req, res, next) {
   const result = listingSchema.validate(req.body);
   if (result.error) {
     throw new ExpressError(400, result.error);
+  } else {
+    next();
   }
-  next();
+};
+
+const validateReview = function (req, res, next) {
+  const { error } = reviewSchema.validate(req.body.review);
+  if (error) {
+    throw new ExpressError(400, error);
+  } else {
+    next();
+  }
 };
 
 // Index Route
@@ -83,10 +94,12 @@ app.post(
 
 app.post(
   '/listings/:id/reviews',
+  validateReview,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     const listing = await Listing.findById(id);
     const { review } = req.body;
+
     const newReview = new Review(review);
     listing.reviews.push(newReview);
 
