@@ -130,6 +130,13 @@
   font-weight: 500;
 }
 
+.sort {
+  margin-bottom: 2rem;
+  max-width: fit-content;
+  display: flex;
+  margin-left: auto;
+}
+
 /*///////////////////////*/
 /* SHOW SECTION */
 .section-show {

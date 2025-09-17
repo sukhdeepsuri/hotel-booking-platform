@@ -3,6 +3,13 @@
 <body>
   <section class="section-index">
     <div class="container">
+      <select class="sort">
+        <option value="">----- SORT BY -----</option>
+        <option value="/listings">Relevance</option>
+        <option value="/listings/lowToHigh">Low to high</option>
+        <option value="/listings/highToLow">High to low</option>
+      </select>
+
       <div class="cards-grid">
         <% for(const listing of allListings) { %>
         <div class="card">
@@ -20,3 +27,11 @@
     </div>
   </section>
 </body>
+
+<script>
+  document.querySelector('.sort').addEventListener('change', function () {
+    if (this.value) {
+      window.location.href = this.value;
+    }
+  });
+</script>

@@ -40,7 +40,7 @@ const validateListing = function (req, res, next) {
 };
 
 const validateReview = function (req, res, next) {
-  const { error } = reviewSchema.validate(req.body.review);
+  const { error } = reviewSchema.validate(req.body);
   if (error) {
     throw new ExpressError(400, error);
   } else {
@@ -53,6 +53,22 @@ app.get('/listings', async (req, res) => {
   const allListings = await Listing.find({});
   res.render('listings/index.ejs', { allListings });
 });
+
+app.get(
+  '/listings/lowToHigh',
+  wrapAsync(async (req, res) => {
+    const allListings = await Listing.find({}).sort({ price: 1 });
+    res.render('listings/index.ejs', { allListings });
+  })
+);
+
+app.get(
+  '/listings/highToLow',
+  wrapAsync(async (req, res) => {
+    const allListings = await Listing.find({}).sort({ price: -1 });
+    res.render('listings/index.ejs', { allListings });
+  })
+);
 
 // New Route
 app.get('/listings/new', (req, res) => {
