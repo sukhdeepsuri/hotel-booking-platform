@@ -10,6 +10,7 @@ const ExpressError = require('./utils/ExpressError');
 const listingSchema = require('./schema.js');
 
 const Listing = require('./models/listing');
+const Review = require('./models/review');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
@@ -52,7 +53,7 @@ app.get(
   '/listings/:id',
   wrapAsync(async (req, res) => {
     const { id } = req.params;
-    const listing = await Listing.findById(id);
+    const listing = await Listing.findById(id).populate('reviews');
     if (!listing) throw new ExpressError(404, 'Listing not found');
     else res.render('listings/show.ejs', { listing });
   })
@@ -80,6 +81,22 @@ app.post(
   })
 );
 
+app.post(
+  '/listings/:id/reviews',
+  wrapAsync(async (req, res) => {
+    const { id } = req.params;
+    const listing = await Listing.findById(id);
+    const { review } = req.body;
+    const newReview = new Review(review);
+    listing.reviews.push(newReview);
+
+    await newReview.save();
+    await listing.save();
+
+    res.redirect(`/listings/${id}`);
+  })
+);
+
 // Edit Route - PUT request
 app.put(
   '/listings/:id',
@@ -104,6 +121,18 @@ app.delete(
     res.redirect('/listings');
   })
 );
+
+app.delete('/listings/:id/reviews/:reviewId', async (req, res) => {
+  const { id, reviewId } = req.params;
+
+  await Listing.findByIdAndUpdate(id, {
+    $pull: { reviews: reviewId },
+  });
+
+  await Review.findByIdAndDelete(reviewId);
+
+  res.redirect(`/listings/${id}`);
+});
 
 // Fallback Middleware
 app.use((req, res, next) => {

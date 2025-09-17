@@ -58,6 +58,36 @@
           <button class="btn btn-edit">Submit</button>
         </form>
       </div>
+
+      <% if (listing.reviews.length) { %>
+      <hr class="section-ruler" />
+
+      <div class="review-section">
+        <h2 class="section-heading">Reviews :</h2>
+
+        <ul class="reviews-grid">
+          <% for (const review of listing.reviews) { %>
+          <li class="review">
+            <div class="review-user">
+              <img src="/user.png" class="review-user-img" />
+              <span class="review-user-name">Username</span>
+            </div>
+
+            <div class="review-rating" style="display: flex; gap: 0.8rem; align-items: center">
+              <p class="starability-result" data-rating="<%= review.rating %>"></p>
+              <p>- <%= review.createdAt.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' }) %></p>
+            </div>
+
+            <p class="review-message"><%= review.comment %></p>
+
+            <form method="post" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+              <button class="btn btn-delete btn-delete-review"><i class="fa-solid fa-trash delete-icon"></i> Delete</button>
+            </form>
+          </li>
+          <% } %>
+        </ul>
+      </div>
+      <% } %>
     </div>
   </section>
 </body>
