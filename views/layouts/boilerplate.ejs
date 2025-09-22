@@ -22,6 +22,8 @@
   <body>
     <%- include('../includes/navbar.ejs') %>
 
-    <main><%- body -%> <%- include('../includes/footer.ejs') %></main>
+    <main><%- include('../includes/flash.ejs') %><%- body -%> <%- include('../includes/footer.ejs') %></main>
+
+    <script src="/js/script.js"></script>
   </body>
 </html>

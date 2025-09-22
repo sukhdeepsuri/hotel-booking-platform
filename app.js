@@ -7,6 +7,7 @@ const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const ExpressError = require('./utils/ExpressError');
 const session = require('express-session');
+const flash = require('connect-flash');
 
 const listings = require('./routes/listing.js');
 const reviews = require('./routes/review.js');
@@ -32,6 +33,13 @@ app.use(
   })
 );
 
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.success = req.flash('success');
+  res.locals.error = req.flash('error');
+  next();
+});
+
 // Mongoose Connection
 const MONGO_URL = 'mongodb://127.0.0.1:27017/wanderlust';
 async function main() {
@@ -45,6 +53,10 @@ main()
 app.use('/listings', listings);
 app.use('/listings/:id/reviews', reviews);
 
+app.get('/', (req, res) => {
+  res.redirect('/listings');
+});
+
 // Fallback Middleware
 app.use((req, res, next) => {
   next(new ExpressError(404, 'Page not found'));
@@ -54,10 +66,6 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   const { status = 500, message } = err;
   res.status(status).render('error.ejs', { message });
-});
-
-app.get('/', (req, res) => {
-  res.send('root is working.');
 });
 
 app.listen(port, () => {

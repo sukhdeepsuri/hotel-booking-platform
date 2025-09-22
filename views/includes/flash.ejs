@@ -1,0 +1,15 @@
+<section class="section-alert">
+  <div class="container">
+    <% if (success && success.length) { %>
+    <div class="success alert">
+      <p class="success-msg"><%= success %></p>
+      <button class="dismiss-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <% } %> <% if (error && error.length) { %>
+    <div class="error alert">
+      <p class="error-msg"><%= error %></p>
+      <button class="dismiss-btn"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <% } %>
+  </div>
+</section>
