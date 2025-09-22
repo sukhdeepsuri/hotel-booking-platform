@@ -16,7 +16,13 @@ router.post('/signup', async (req, res) => {
     const { username, email, password } = req.body;
     const newUser = new User({ email, username });
     const registeredUser = await User.register(newUser, password);
-    console.log(registeredUser);
+
+    req.login(registeredUser, err => {
+      if (err) {
+        return next(err);
+      }
+    });
+
     req.flash('success', 'User Registered Successfully!');
     res.redirect('/listings');
   } catch (e) {
@@ -27,6 +33,17 @@ router.post('/signup', async (req, res) => {
 
 router.post('/login', passport.authenticate('local', { failureRedirect: '/user/login', failureFlash: true }), async (req, res) => {
   req.flash('success', 'Welcome back to Wanderlust!');
+  res.redirect('/listings');
+});
+
+router.get('/logout', (req, res, next) => {
+  req.logout(err => {
+    if (err) {
+      return next(err);
+    }
+  });
+
+  req.flash('success', 'User logged out!');
   res.redirect('/listings');
 });
 

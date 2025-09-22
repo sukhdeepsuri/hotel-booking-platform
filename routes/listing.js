@@ -10,6 +10,8 @@ const Review = require('../models/review');
 const { listingSchema } = require('../schema.js');
 const { reviewSchema } = require('../schema.js');
 
+const { isLoggedIn } = require('../middleware.js');
+
 const validateListing = function (req, res, next) {
   const result = listingSchema.validate(req.body);
   if (result.error) {
@@ -43,7 +45,7 @@ router.get(
 );
 
 // New Route
-router.get('/new', (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
   res.render('listings/new.ejs');
 });
 
@@ -64,6 +66,7 @@ router.get(
 // Edit Route
 router.get(
   '/:id/edit',
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     const listing = await Listing.findById(id);
@@ -78,6 +81,7 @@ router.get(
 // Create Route - POST request
 router.post(
   '/',
+  isLoggedIn,
   validateListing,
   wrapAsync(async (req, res) => {
     const listing = new Listing(req.body.listing);
@@ -90,6 +94,7 @@ router.post(
 // Edit Route - PUT request
 router.put(
   '/:id',
+  isLoggedIn,
   validateListing,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
@@ -106,6 +111,7 @@ router.put(
 // DELETE request
 router.delete(
   '/:id',
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     const deletedListing = await Listing.findByIdAndDelete(id);

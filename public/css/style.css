@@ -85,6 +85,13 @@
   padding: 0;
 }
 
+.welcome-user {
+  color: #333;
+  font-weight: 500;
+  font-size: 1.6rem;
+  margin-right: 0.4rem;
+}
+
 /*///////////////////////*/
 /* INDEX SECTION */
 .section-index {

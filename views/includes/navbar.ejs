@@ -11,8 +11,12 @@
       </li>
 
       <li><a href="/listings/new" class="main-nav-link">List your room</a></li>
+      <% if (!currUser) { %>
       <li><a class="main-nav-link" href="/user/signup">Sign up</a></li>
       <li><a class="main-nav-link" href="/user/login">Login</a></li>
+      <% } %> <% if(currUser) { %>
+      <li><span class="welcome-user"><%= currUser.username[0].toUpperCase() + currUser.username.slice(1) %>,</span><a class="main-nav-link" href="/user/logout">Logout</a></li>
+      <% } %>
     </ul>
   </nav>
 </header>
