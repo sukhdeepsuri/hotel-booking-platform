@@ -309,3 +309,15 @@ footer {
 .info-links a:hover {
   text-decoration: underline;
 }
+
+/*///////////////////////*/
+/* SIGNUP/LOGIN SECTION */
+.section-signup {
+  padding: 4.8rem 0;
+}
+
+.section-signup .container {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 3.2rem;
+}

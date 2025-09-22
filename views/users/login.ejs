@@ -1,0 +1,21 @@
+<% layout('/layouts/boilerplate') %>
+<body>
+  <section class="section-signup">
+    <div class="container">
+      <h3 class="section-heading">Login on Wanderlust :</h3>
+      <form method="post" action="/user/login">
+        <div class="form-group">
+          <label for="username">Username : </label>
+          <input type="text" name="username" id="username" placeholder="Enter username" required />
+        </div>
+
+        <div class="form-group mb--lg">
+          <label for="password">Password : </label>
+          <input type="password" name="password" id="password" placeholder="Enter password" required />
+        </div>
+
+        <button class="btn btn-edit">Login</button>
+      </form>
+    </div>
+  </section>
+</body>
