@@ -9,6 +9,8 @@ const Review = require('../models/review');
 const { listingSchema } = require('../schema.js');
 const { reviewSchema } = require('../schema.js');
 
+const { isLoggedIn, isReviewAuthor } = require('../middleware.js');
+
 const validateReview = function (req, res, next) {
   const { error } = reviewSchema.validate(req.body);
   if (error) {
@@ -22,13 +24,16 @@ const validateReview = function (req, res, next) {
 // Create Route - POST request
 router.post(
   '/',
+  isLoggedIn,
   validateReview,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     const listing = await Listing.findById(id);
-    const { review } = req.body;
 
+    const { review } = req.body;
     const newReview = new Review(review);
+    newReview.author = req.user._id;
+
     listing.reviews.push(newReview);
 
     await newReview.save();
@@ -41,7 +46,7 @@ router.post(
 );
 
 // DELETE request
-router.delete('/:reviewId', async (req, res) => {
+router.delete('/:reviewId', isLoggedIn, isReviewAuthor, async (req, res) => {
   const { id, reviewId } = req.params;
 
   await Listing.findByIdAndUpdate(id, {
