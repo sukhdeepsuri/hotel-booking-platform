@@ -190,16 +190,25 @@
 }
 
 .show-card-price {
-  font-size: 1.4rem;
-  font-weight: 500;
+  font-size: 1.6rem;
+  font-weight: 600;
   margin: 0.4rem 0 1.2rem 0;
 }
 
 .show-card-location {
   font-size: 1.4rem;
+  margin-bottom: 1.2rem;
 }
 
 .show-card-location span {
+  font-weight: 500;
+}
+
+.show-card-owner {
+  font-size: 1.4rem;
+}
+
+.show-card-owner span {
   font-weight: 500;
 }
 

@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router({ mergeParams: true });
 const User = require('../models/user');
 const passport = require('passport');
+const { saveRedirectUrl } = require('../middleware');
 
 router.get('/signup', (req, res) => {
   res.render('users/signup.ejs');
@@ -31,9 +32,10 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-router.post('/login', passport.authenticate('local', { failureRedirect: '/user/login', failureFlash: true }), async (req, res) => {
+router.post('/login', saveRedirectUrl, passport.authenticate('local', { failureRedirect: '/user/login', failureFlash: true }), async (req, res) => {
   req.flash('success', 'Welcome back to Wanderlust!');
-  res.redirect('/listings');
+  const redirectUrl = res.locals.redirectUrl || '/listings';
+  res.redirect(redirectUrl);
 });
 
 router.get('/logout', (req, res, next) => {

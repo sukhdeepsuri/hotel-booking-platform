@@ -18,15 +18,18 @@
           <p class="show-card-description"><%= listing.description %></p>
           <p class="show-card-price">&#8377;<%= listing.price.toLocaleString('en-IN') %>/ night</p>
           <p class="show-card-location"><%= listing.location %>, <span><%= listing.country %></span></p>
+          <p class="show-card-owner">Owned by : <span><%= listing.owner.username %></span></p>
         </div>
       </div>
 
+      <% if(currUser && listing.owner._id.equals(currUser._id)) { %>
       <div class="form-group-flex">
         <a href="/listings/<%= listing._id %>/edit"><button class="btn btn-edit">Edit</button></a>
         <form method="post" action="/listings/<%= listing._id %>?_method=DELETE">
           <button class="btn btn-delete">Delete</button>
         </form>
       </div>
+      <% } %>
 
       <hr class="section-ruler" />
 
