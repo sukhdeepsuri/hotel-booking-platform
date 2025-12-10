@@ -18,12 +18,19 @@ const listingSchema = mongoose.Schema({
   price: Number,
   location: String,
   country: String,
+
+  isAvailable: {
+    type: Boolean,
+    default: true,
+  },
+
   reviews: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Review',
     },
   ],
+
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

@@ -74,6 +74,19 @@ footer {
   color: #fff;
 }
 
+.btn-book {
+  background: none;
+  background-color: #ff385c;
+  border: 1px solid #d42f4d;
+  color: #fff;
+}
+
+.btn-book:hover {
+  background: none;
+  background-color: #d42f4d;
+  color: #fff;
+}
+
 .grid {
   display: grid;
   column-gap: 6.4rem;
@@ -140,6 +153,7 @@ input[type='text'],
 input[type='email'],
 input[type='number'],
 input[type='password'],
+input[type='date'],
 textarea,
 select {
   width: 100%;
@@ -152,7 +166,8 @@ select {
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   border-color: #adb5bd;
 }
 

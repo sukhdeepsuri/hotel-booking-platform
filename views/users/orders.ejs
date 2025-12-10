@@ -1,0 +1,24 @@
+<%- layout('layouts/boilerplate') -%>
+
+<body>
+  <section class="section-orders">
+    <div class="container">
+      <h1 class="section-heading">Your Bookings</h1>
+
+      <div class="cards-grid">
+        <% for(const order of orders) { %>
+        <div class="card">
+          <div class="card-img-box">
+            <a href="/user/orders/<%= order._id %>"><img src="<%= order.listing.image %>" class="card-img" alt="listing image" /></a>
+          </div>
+
+          <div class="card-body">
+            <p class="card-title"><%= order.listing.title %></p>
+            <p class="card-price">&#8377; <%= order.listing.price.toLocaleString('en-IN') %>/ night <em class="tax-info hide">+18% GST</em></p>
+          </div>
+        </div>
+        <% } %>
+      </div>
+    </div>
+  </section>
+</body>

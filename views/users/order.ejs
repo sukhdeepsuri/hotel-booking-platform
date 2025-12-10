@@ -1,0 +1,64 @@
+<%- layout('layouts/boilerplate') -%>
+
+<body>
+  <section class="section-show">
+    <div class="container">
+      <h1 class="section-heading"><%= order.listing.title %></h1>
+
+      <div class="show-card">
+        <div class="show-card-img-box">
+          <img src="<%= order.listing.image %>" class="show-card-img" alt="listing image" />
+          <img src="<%= order.listing.image %>" class="show-card-img" alt="listing image" />
+          <img src="<%= order.listing.image %>" class="show-card-img" alt="listing image" />
+          <img src="<%= order.listing.image %>" class="show-card-img" alt="listing image" />
+          <img src="<%= order.listing.image %>" class="show-card-img" alt="listing image" />
+        </div>
+
+        <div class="card-body">
+          <p class="show-card-description"><%= order.listing.description %></p>
+          <p class="show-card-price">&#8377;<%= order.listing.price.toLocaleString('en-IN') %>/ night</p>
+          <p class="show-card-location"><%= order.listing.location %>, <span><%= order.listing.country %></span></p>
+          <p class="show-card-order">Order Details :</p>
+          <div class="order-details">
+            <p class="show-card-owner">Check in: <span><%= order.startDate.toLocaleDateString('en-IN') %></span></p>
+            <p class="show-card-owner">Check Out: <span><%= order.endDate.toLocaleDateString('en-IN') %></span></p>
+            <p class="show-card-owner">Guests: <span><%= order.guests %></span></p>
+          </div>
+        </div>
+      </div>
+
+      <% if(currUser) { %>
+      <hr class="section-ruler" />
+
+      <div class="review-section">
+        <h2 class="section-heading">Leave a review :</h2>
+        <form method="post" action="/listings/<%= order.listing._id %>/reviews">
+          <div class="form-group" style="display: flex; gap: 1.6rem; align-items: center">
+            <label for="rating" style="margin-bottom: 0">Rating : </label>
+            <fieldset class="starability-heart">
+              <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+              <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+              <label for="first-rate1" title="Terrible">1 star</label>
+              <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+              <label for="first-rate2" title="Not good">2 stars</label>
+              <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+              <label for="first-rate3" title="Average">3 stars</label>
+              <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+              <label for="first-rate4" title="Very good">4 stars</label>
+              <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+              <label for="first-rate5" title="Amazing">5 stars</label>
+            </fieldset>
+          </div>
+
+          <div class="form-group">
+            <label for="comment">Comment : </label>
+            <textarea class="message-textarea" id="comment" name="review[comment]" placeholder="Write a comment" required></textarea>
+          </div>
+
+          <button class="btn btn-edit">Submit</button>
+        </form>
+      </div>
+      <% } %>
+    </div>
+  </section>
+</body>

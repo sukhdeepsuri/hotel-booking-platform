@@ -22,6 +22,16 @@ const validateListing = function (req, res, next) {
 };
 
 // Listings
+// Initialize currently logged in user as 'owner' for all the listings.
+router.get('/setowner', async (req, res) => {
+  const allListings = await Listing.find({});
+  for (const listing of allListings) {
+    listing.owner = res.locals.currUser._id;
+    await listing.save();
+  }
+  res.send('owner initialized!');
+});
+
 // Index Route
 router.get('/', async (req, res) => {
   const allListings = await Listing.find({});
@@ -44,6 +54,29 @@ router.get(
   })
 );
 
+router.get(
+  '/currentlocation',
+  wrapAsync(async (req, res) => {
+    const { city } = req.query;
+
+    const allListings = await Listing.aggregate([
+      {
+        $addFields: {
+          isPreferredCity: {
+            $cond: [{ $eq: ['$location', city] }, 1, 0], // Make sure city is not undefined.
+          },
+        },
+      },
+
+      {
+        $sort: { isPreferredCity: -1 },
+      },
+    ]);
+
+    res.render('listings/index.ejs', { allListings });
+  })
+);
+
 // New Route
 router.get('/new', isLoggedIn, (req, res) => {
   res.render('listings/new.ejs');
@@ -57,6 +90,7 @@ router.get(
     const listing = await Listing.findById(id)
       .populate({ path: 'reviews', populate: { path: 'author' } })
       .populate('owner');
+
     if (!listing) {
       req.flash('error', 'Listing you requested for does not exist.');
       res.redirect('/listings');
@@ -88,6 +122,7 @@ router.post(
   validateListing,
   wrapAsync(async (req, res) => {
     const listing = new Listing(req.body.listing);
+
     await listing.save();
     req.flash('success', 'New Listing Created!');
     res.redirect('/listings');

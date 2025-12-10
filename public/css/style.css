@@ -92,6 +92,16 @@
   margin-right: 0.4rem;
 }
 
+.btn-location {
+  border: none;
+}
+
+.current-location-icon {
+  cursor: pointer;
+  color: #ff385c;
+  font-size: 2rem;
+}
+
 /*///////////////////////*/
 /* INDEX SECTION */
 .section-index {
@@ -137,11 +147,33 @@
   font-weight: 500;
 }
 
-.sort {
-  margin-bottom: 2rem;
-  max-width: fit-content;
+.btn-box {
   display: flex;
-  margin-left: auto;
+  justify-content: end;
+  gap: 1.6rem;
+  margin-bottom: 2rem;
+}
+.sort {
+  /* margin-bottom: 2rem; */
+  max-width: fit-content;
+  /* display: flex; */
+  /* margin-left: auto; */
+}
+
+#find-nearby-btn {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  background-color: #fff;
+  border-color: #dee2e6;
+}
+
+#find-nearby-btn:hover {
+  border-color: #adb5bd;
+}
+
+#find-nearby-btn.active {
+  background-color: #f1f3f5;
 }
 
 /*///////////////////////*/
@@ -210,6 +242,60 @@
 
 .show-card-owner span {
   font-weight: 500;
+}
+
+.book-modal {
+  background-color: #f1f3f5;
+  position: fixed;
+  width: 100%;
+  max-width: 113.6rem;
+  padding: 4.8rem 3.2rem;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  z-index: 100;
+  border-radius: 8px;
+  transition: 0.3s cubic-bezier(0, 0.54, 0.58, 1);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease; /* fade animation */
+  z-index: 50;
+}
+/* When modal is active */
+.modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-overlay.show .book-modal {
+  transform: translateY(-50%) translateX(-50%);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 5%;
+  right: 2%;
+  font-size: 2.4rem;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.modal-close-btn:hover {
+  color: #ff385c;
+  transform: rotate(90deg);
 }
 
 /* Styling Reviews */
@@ -336,4 +422,22 @@ footer {
   max-width: 120rem;
   margin: 0 auto;
   padding: 0 3.2rem;
+}
+
+/*///////////////////////*/
+/* ORDERS SECTION */
+.section-orders {
+  padding: 4.8rem 0;
+}
+
+.show-card-order {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  margin-top: 2.4rem;
+}
+
+.order-details {
+  display: flex;
+  gap: 1.2rem;
 }

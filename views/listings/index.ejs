@@ -3,12 +3,16 @@
 <body>
   <section class="section-index">
     <div class="container">
-      <select class="sort">
-        <option value="">----- SORT BY -----</option>
-        <option value="/listings">Relevance</option>
-        <option value="/listings/lowToHigh">Low to high</option>
-        <option value="/listings/highToLow">High to low</option>
-      </select>
+      <div class="btn-box">
+        <button class="btn btn-edit" id="find-nearby-btn">Get nearyby hotels <i class="fa-solid fa-location-dot current-location-icon"></i></button>
+
+        <select class="sort">
+          <option value="">----- SORT BY -----</option>
+          <option value="/listings">Relevance</option>
+          <option value="/listings/lowToHigh">Low to high</option>
+          <option value="/listings/highToLow">High to low</option>
+        </select>
+      </div>
 
       <div class="cards-grid">
         <% for(const listing of allListings) { %>

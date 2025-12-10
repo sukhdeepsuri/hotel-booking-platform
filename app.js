@@ -62,6 +62,7 @@ main()
   .then(res => console.log('connected to DB'))
   .catch(err => console.log(err));
 
+// Routes
 app.use('/listings', listingRouter);
 app.use('/listings/:id/reviews', reviewRouter);
 app.use('/user', userRouter);

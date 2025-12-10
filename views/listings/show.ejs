@@ -29,6 +29,42 @@
           <button class="btn btn-delete">Delete</button>
         </form>
       </div>
+
+      <% } if (currUser && !listing.owner._id.equals(currUser._id) && listing.isAvailable) { %>
+
+      <button class="btn btn-edit" id="reserve-btn">Reserve</button>
+      <div class="modal-overlay">
+        <div class="book-modal">
+          <i class="fa-solid fa-xmark modal-close-btn"></i>
+          <h2 class="section-heading">Book this room</h2>
+          <form method="post" action="/user/orders/<%= listing._id %>">
+            <div class="form-group">
+              <label for="startDate">Start Date : </label>
+              <input type="date" name="order[startDate]" id="startDate" required />
+            </div>
+
+            <div class="form-group">
+              <label for="endDate">End Date : </label>
+              <input type="date" name="order[endDate]" id="endDate" required />
+            </div>
+
+            <div class="form-group">
+              <label for="guest">Guests : </label>
+              <select name="order[guests]">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+
+            <button class="btn btn-book">Book Now</button>
+          </form>
+        </div>
+      </div>
+      <% } %> <% if(currUser && !listing.isAvailable && !listing.owner._id.equals(currUser._id)) { %>
+      <button class="btn btn-edit">Booked!</button>
       <% } %> <% if (listing.reviews.length) { %>
       <hr class="section-ruler" />
 
@@ -50,43 +86,14 @@
 
             <p class="review-message"><%= review.comment %></p>
 
+            <% if(currUser && currUser._id.equals(review.author._id)) { %>
             <form method="post" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
               <button class="btn btn-delete btn-delete-review"><i class="fa-solid fa-trash delete-icon"></i> Delete</button>
             </form>
+            <% } %>
           </li>
           <% } %>
         </ul>
-      </div>
-      <% } %> <% if(currUser) { %>
-      <hr class="section-ruler" />
-
-      <div class="review-section">
-        <h2 class="section-heading">Leave a review :</h2>
-        <form method="post" action="/listings/<%= listing._id %>/reviews">
-          <div class="form-group" style="display: flex; gap: 1.6rem; align-items: center">
-            <label for="rating" style="margin-bottom: 0">Rating : </label>
-            <fieldset class="starability-heart">
-              <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
-              <input type="radio" id="first-rate1" name="review[rating]" value="1" />
-              <label for="first-rate1" title="Terrible">1 star</label>
-              <input type="radio" id="first-rate2" name="review[rating]" value="2" />
-              <label for="first-rate2" title="Not good">2 stars</label>
-              <input type="radio" id="first-rate3" name="review[rating]" value="3" />
-              <label for="first-rate3" title="Average">3 stars</label>
-              <input type="radio" id="first-rate4" name="review[rating]" value="4" />
-              <label for="first-rate4" title="Very good">4 stars</label>
-              <input type="radio" id="first-rate5" name="review[rating]" value="5" />
-              <label for="first-rate5" title="Amazing">5 stars</label>
-            </fieldset>
-          </div>
-
-          <div class="form-group">
-            <label for="comment">Comment : </label>
-            <textarea class="message-textarea" id="comment" name="review[comment]" placeholder="Write a comment" required></textarea>
-          </div>
-
-          <button class="btn btn-edit">Submit</button>
-        </form>
       </div>
       <% } %>
     </div>
