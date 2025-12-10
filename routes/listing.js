@@ -12,6 +12,10 @@ const { reviewSchema } = require('../schema.js');
 
 const { isLoggedIn, isOwner } = require('../middleware.js');
 
+const multer = require('multer');
+const { storage } = require('../cloudConfig.js');
+const upload = multer({ storage });
+
 const validateListing = function (req, res, next) {
   const result = listingSchema.validate(req.body);
   if (result.error) {
@@ -119,11 +123,17 @@ router.get(
 router.post(
   '/',
   isLoggedIn,
+  upload.single('listing[image]'),
   validateListing,
   wrapAsync(async (req, res) => {
+    const url = req.file.path;
+
     const listing = new Listing(req.body.listing);
+    listing.image = url;
+    listing.owner = req.user._id;
 
     await listing.save();
+
     req.flash('success', 'New Listing Created!');
     res.redirect('/listings');
   })

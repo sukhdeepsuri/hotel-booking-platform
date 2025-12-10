@@ -4,7 +4,7 @@
   <section class="section-new">
     <div class="container">
       <h1 class="section-heading">Create New Listing :</h1>
-      <form method="post" action="/listings">
+      <form method="post" action="/listings" enctype="multipart/form-data">
         <div class="form-group">
           <label for="title">Title : </label>
           <input type="text" name="listing[title]" id="title" placeholder="Enter title" required />
@@ -15,9 +15,14 @@
           <textarea type="text" name="listing[description]" id="description" placeholder="Enter description" class="message-textarea" required></textarea>
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="image">Upload image link : </label>
           <input type="text" name="listing[image]" id="image" placeholder="Enter image URL/Link" />
+        </div> -->
+
+        <div class="form-group">
+          <label for="image">Upload image : </label>
+          <input type="file" name="listing[image]" id="image" class="custom-file-upload" />
         </div>
 
         <div class="form-group-flex">

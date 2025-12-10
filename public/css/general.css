@@ -154,6 +154,7 @@ input[type='email'],
 input[type='number'],
 input[type='password'],
 input[type='date'],
+input[type='file'],
 textarea,
 select {
   width: 100%;
@@ -184,6 +185,27 @@ select:focus {
 
 .message-textarea {
   height: 20rem;
+}
+
+.custom-file-upload {
+  cursor: pointer;
+}
+
+.custom-file-upload::-webkit-file-upload-button {
+  border: none;
+  border-right: 2px solid #dee2e6;
+  display: inline-block;
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.custom-file-upload::-webkit-file-upload-button:hover {
+  background-color: #dee2e6;
+}
+
+input[type='file'] {
+  padding: 0;
 }
 
 /* ------------------------ */
