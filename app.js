@@ -11,6 +11,7 @@ const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const ExpressError = require('./utils/ExpressError');
 const session = require('express-session');
+const MongoStore = require('connect-mongo').default;
 const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
@@ -28,8 +29,17 @@ app.set('views', path.join(__dirname, '/views'));
 app.use(express.static(path.join(__dirname, '/public')));
 app.engine('ejs', ejsMate);
 
+const store = MongoStore.create({
+  mongoUrl: 'mongodb+srv://sukhdeepsuri:uRvOc5xNvcO33H1n@cluster0.6m0ul.mongodb.net/?appName=Cluster0',
+  crypto: {
+    secret: 'secretcode',
+  },
+  touchAfter: 24 * 3600,
+});
+
 app.use(
   session({
+    store,
     secret: 'secretcode',
     resave: false,
     saveUninitialized: true,
@@ -57,7 +67,8 @@ app.use((req, res, next) => {
 });
 
 // Mongoose Connection
-const MONGO_URL = 'mongodb://127.0.0.1:27017/wanderlust';
+// const MONGO_URL = 'mongodb://127.0.0.1:27017/wanderlust';
+const MONGO_URL = 'mongodb+srv://sukhdeepsuri:uRvOc5xNvcO33H1n@cluster0.6m0ul.mongodb.net/?appName=Cluster0';
 async function main() {
   await mongoose.connect(MONGO_URL);
 }
